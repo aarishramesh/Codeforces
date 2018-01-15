@@ -1,9 +1,10 @@
+package div2.round456;
 import java.util.Scanner;
 
-public class Solution {
+public class CanConstruct {
 	static String canConstruct(int[] a) {
         // Return "Yes" or "No" denoting whether you can construct the required number.
-		int sum = 0;
+		long sum = 0;
 		for (int i = 0; i < a.length; i++) {
 			sum += a[i];
 		}
@@ -11,7 +12,7 @@ public class Solution {
 			return "Yes";
 		else {
 			//Sum all the digits
-			int n = 0, resSum = 0;
+			long n = 0, resSum = 0;
 			while (sum > 0) {
 				n = sum % 10;
 				sum = sum / 10;

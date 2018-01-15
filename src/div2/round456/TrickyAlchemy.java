@@ -1,6 +1,17 @@
+package div2.round456;
 import java.util.Scanner;
 
-public class SolutionNew {
+/**
+ * Grisha needs to obtain some yellow, green and blue balls. 
+ * 
+ * It's known that to produce a yellow ball one needs two yellow crystals, green — one yellow and one blue, and for a blue ball, three blue crystals are enough.
+	Right now there are A yellow and B blue crystals in Grisha's disposal. 
+	Find out how many additional crystals he should acquire in order to produce the required number of balls.
+ * 
+ * @author aarishramesh
+ *
+ */
+public class TrickyAlchemy {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
