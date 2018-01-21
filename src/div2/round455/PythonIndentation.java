@@ -44,30 +44,35 @@ public class PythonIndentation {
 		char[] arr = new char[n];
 		for (int i = 0; i < n; i++)
 			arr[i] = sc.nextLine().charAt(0);
-		System.out.println(calIndentPoss(arr, 0));
+		System.out.println(calIndentPoss(arr));
 		sc.close();
 	}
 
-	private static int calIndentPoss(char[] arr, int i) {
-		if (i < arr.length) {
-			if (arr[i] == 's') {
-				i++;
-				return calIndentPoss(arr, i);
-			} else if (arr[i] == 'f') {
-				if (i + 1 < arr.length && arr[i + 1] == 's') {
-					if (i + 2 < arr.length && arr[i + 2] == 'f') {
-						i = i + 2;
-						return 2 * calIndentPoss(arr, i);
-					} else {
-						i++;
-						return calIndentPoss(arr, i);
-					}
-				} else {
-					i++;
-					return calIndentPoss(arr, i);
+	/**
+	 * Iterative solution
+	 * 
+	 * @param arr
+	 * @return
+	 */
+	private static long calIndentPoss(char[] arr) {
+		long[][] dpArr = new long[arr.length][arr.length];
+		dpArr[0][0] = 1;
+		for (int i = 1; i < arr.length; i++) {
+			if (arr[i - 1] == 'f') {
+				for (int j = 0; j < i; j++)
+					dpArr[i][j + 1] = dpArr[i - 1][j]; 
+			} else {
+				long suffix = 0;
+				for (int j = i - 1; j >=0; j--) {
+					suffix = suffix + dpArr[i - 1][j];
+					dpArr[i][j] = suffix;
 				}
 			}
 		}
-		return 1;
+		
+		long noOfWays = 0;
+		for (int col = 0; col < arr.length; col++)
+			noOfWays += dpArr[arr.length - 1][col];
+		return noOfWays;
 	}
 }
